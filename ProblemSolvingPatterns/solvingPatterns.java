@@ -13,6 +13,7 @@ public class solvingPatterns {
         System.out.println(same(arr1, arr2));
     }
 
+    // Frequency counter problem #1.
     // Write a function called same, which accepts two arrays.
     // The function should return true if every value ine the array has
     // it's corresponding value squared in the second array.
@@ -26,8 +27,8 @@ public class solvingPatterns {
         HashMap <Integer, Integer> squaredFrequencyCounter = new HashMap<>();
 
 
-        frequencyCounter = countFreq(array1);
-        squaredFrequencyCounter = countFreq(array2);
+        frequencyCounter = countFreqArray(array1);
+        squaredFrequencyCounter = countFreqArray(array2);
         System.out.println(frequencyCounter);
         System.out.println(squaredFrequencyCounter);
 
@@ -44,7 +45,7 @@ public class solvingPatterns {
     // It iterates over the array and maps the values in the array with their frequencies.
     // Returns a HashMap 
 
-    private static HashMap<Integer,Integer> countFreq (int array []) {
+    private static HashMap<Integer,Integer> countFreqArray (int array []) {
 
         HashMap <Integer, Integer> generalFreqCount = new HashMap<>();
         for(int i = 0 ; i < array.length ; i++){
@@ -59,5 +60,16 @@ public class solvingPatterns {
             }
         }
         return generalFreqCount;
+    }
+
+    // Frequency Counter problem #2
+    // Given two strings, write a function to determine if the 
+    //second string is an anagram of the first. 
+
+    public static boolean validAnagram( String str1, String str2){
+
+
+
+        return true;
     }
 }
