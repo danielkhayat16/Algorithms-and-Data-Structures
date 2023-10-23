@@ -9,6 +9,8 @@ public class solvingPatterns {
         int[] arr1 = { 1, 2, 2, 3, 3, 3, 1 };
         int[] arr2 = { 1, 1, 4, 4, 9, 9, 9 };
         int[] arr3 = { -4, 4, 5, 6, 10, 11, 14 };
+        double[] arr4 = { 1.0, 2.0, 2.0, 3.0, 3.0, 3.0, 1.0 };
+        int [] arr5 = {2,3,1,2,4,3};
         System.out.println("Test problem #1: " + (same(arr1, arr2) ? "Check" : "X"));
 
         String str1 = "Daniel";
@@ -26,7 +28,10 @@ public class solvingPatterns {
 
         System.out.println(
                 "Test problem #7: " + (areThereDuplicateOne(3, 4, 5, 4, 3, "str", "sft", "str") ? "Check" : "Wrong"));
-
+        System.out.println("Test problem #8: " + (averagePair(arr4, 2.0) ? "Check" : "Wrong"));
+        System.out.println("Test problem #9: " + (isSubsequence("hello", "hello World")
+                && isSubsequence("abc", "adbertc") && !(isSubsequence("abc", "acb")) ? "Check" : "Wrong"));
+        System.out.println(minSubarrayLen(arr5, 7));
     }
 
     // Frequency counter problem #1.
@@ -254,7 +259,78 @@ public class solvingPatterns {
         }
         return map;
     }
+    // Problem #8
+    // Write a function called averagePair. Given a sorted array of integers and a
+    // target average, determine if there is a pair of values in the array where the
+    // average of the pair equals the target average. There may be more than one
+    // pair that matches the average target.
 
+    public static boolean averagePair(double[] arr, double target) {
+
+        int hi = arr.length - 1;
+        int lo = 0;
+        double currPair = (arr[lo] + arr[hi]) / 2;
+        while (lo < hi) {
+            if (currPair == target)
+                return true;
+            if (currPair < target)
+                lo++;
+            else
+                hi--;
+
+            currPair = (arr[lo] + arr[hi]) / 2;
+        }
+
+        return false;
+    }
+
+    // Problem #9 - Multiple pointers
+    // Write a function called isSubsequence which takes in two strings and checks
+    // whether the characters in the first string form a subsequence of the
+    // characters in the second string. In other words, the function should check
+    // whether the characters in the first string appear somewhere in the second
+    // string, without their order changing.
+    public static boolean isSubsequence(String sub, String str) {
+
+        int i = 0;
+        for (int j = 0; j < str.length(); j++) {
+            if (i == sub.length() - 1)
+                return true;
+            if (sub.charAt(i) == (str.charAt(j)))
+                i++;
+        }
+
+        return false;
+    }
+    // Problem #11, I STILL DID NOT FULLY UNDERSTOOD IT!
+    // Write a function called minSubArrayLen which accepts two parameters - an
+    // array of positive integers and a positive integer.
+    // This function should return the minimal length of a contiguous subarray of
+    // which the sum is greater than or equal to the integer passed to the function.
+    // If there isn't one, return 0 instead.
+
+    public static int minSubarrayLen(int[] arr, int num) {
+        int start = 0;
+        int end = 0;
+        int total = 0;
+        int minLen = Integer.MAX_VALUE;
+
+        while (start < arr.length) { // Iterate over the array
+            if (total < num && end < arr.length) { // Check if there is a window that fits the requierements in the
+                                                   // whole array.
+                total += arr[end];
+                end++;
+            } else if (total >= num) { // Shrink the window if possible
+                minLen = Math.min(minLen, end - start); // This line keeeps the smallest window into minLen variable
+                total -= arr[start];
+                start++;
+            } else
+                break; // To avoid infinit loop
+
+        }
+        return minLen == Integer.MAX_VALUE ? 0 : minLen;
+
+    }
 }
 
 // 0585588464 - יציק ספרי זןהר
