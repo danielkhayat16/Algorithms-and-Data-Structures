@@ -8,6 +8,7 @@ public class recursion {
         System.out.println("Test Problem #3: " + (productOfArray(arr1) == (6 * 5 * 4 * 3 * 2) ? "Check" : "Wrong"));
         System.out.println("Test Problem #4: " + (fib(10) == 55 ? "Check" : "Wrong"));
         System.out.println("Test problem #5: " + (reverse("daniel").equals("leinad") ? "Check" : "Wrong"));
+        System.out.println("Test problem #6: " + (isPalindrome("abcba") ? "Check" : "Wrong"));
 
     }
 
@@ -71,6 +72,18 @@ public class recursion {
         if (str.length() == 1)
             return str;
         return str.substring(str.length() - 1, str.length()) + reverse(str.substring(0, str.length() - 1));
+    }
+
+    // Problem #6
+    // Write a recursive function called isPalindrome which returns true if the
+    // string passed to it is a palindrome (reads the same forward and backward).
+    // Otherwise it returns false.
+
+    public static boolean isPalindrome(String str) {
+        if (str.length() <= 1)
+            return true;
+        return str.charAt(0) == str.charAt(str.length() - 1)
+                && isPalindrome(str.substring(1, str.length() - 1));
     }
 
 }
